@@ -1,27 +1,29 @@
 {% extends 'base.html' %}
 {% block maincontent %}
 <h1>Stock List</h1>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Ticker</th>
-        <th>Price</th>
-        <th>Actions</th>
-    </tr>
-    {% for stock in stocks %}
-    <tr>
-        <td>{{ stock[1] }}</td> <!-- stock[1] is name, stock[2] is ticker, stock[3] is price -->
-        <td>{{ stock[2] }}</td>
-        <td>{{ stock[3] }}</td>
-        <td>
-            <a href="{{ url_for('main.edit_stock', id=stock[0]) }}">Edit</a>
-            <form action="{{ url_for('main.delete_stock', id=stock[0]) }}" method="POST">
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-    {% endfor %}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Ticker</th>
+            <th>Price $ USD</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in stocks %}
+        <tr>
+            <td>{{ stock[1] }}</td> <!-- stock[1] is name, stock[2] is ticker, stock[3] is price -->
+            <td>{{ stock[2] }}</td>
+            <td>{{ stock[3] }}</td>
+            <td>
+                <a href="{{ url_for('main.edit_stock', id=stock[0]) }}" class="btn btn-primary btn-sm">Edit</a>
+                <form action="{{ url_for('main.delete_stock', id=stock[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
-<a href="{{ url_for('main.add_stock') }}">Add Stock</a>
-
 {% endblock %}
