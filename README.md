@@ -4,6 +4,14 @@
 
 The Stock Management System is a full-stack web application that allows users to manage a list of stocks. Users can perform CRUD (Create, Read, Update, Delete) operations on stocks, where each stock has a name, ticker symbol, and price. This application uses Flask for the backend, PostgreSQL for the database, and basic HTML, CSS, and JavaScript for the frontend.
 
+## Here is a screenshot of the project:
+**Home Page**:
+![Project Screenshot](/figures/homepage.png)
+**Create Page**:
+![Project Screenshot](/figures/createstockpage.png)
+**Edit Page**:
+![Project Screenshot](/figures/editstockpage.png)
+
 ## Features
 
 - **Web Interface**:
