@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block maincontent %}
 <h1>Edit Stock</h1>
-
+<!-- All feilds must be filled -->
 <form method="POST" class="form">
     <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
@@ -20,6 +20,6 @@
 
     <button type="submit" class="btn btn-primary">Update</button>
 </form>
-
+<!-- Go back to home page -->
 <a href="{{ url_for('main.index') }}" class="btn btn-secondary mt-3">Back to Stock List</a>
 {% endblock %}

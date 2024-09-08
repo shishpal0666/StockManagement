@@ -2,7 +2,7 @@
 {% block maincontent %}
 
 <h1>Add Stock</h1>
-
+<!-- All feilds must be filled -->
 <form method="POST" class="form">
     <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
@@ -13,15 +13,15 @@
         <label for="ticker" class="form-label">Ticker:</label>
         <input type="text" id="ticker" name="ticker" class="form-control" required>
     </div>
-
+    <!-- Takes only numbers as input -->
     <div class="mb-3">
         <label for="price" class="form-label">Price:</label>
         <input type="number" step="0.01" id="price" name="price" class="form-control" required>
     </div>
-
+    <!-- Submitting the action of adding stock -->
     <button type="submit" class="btn btn-success">Add Stock</button>
 </form>
-
+<!-- Go back to the home page -->
 <a href="{{ url_for('main.index') }}" class="btn btn-secondary mt-3">Back to Stock List</a>
 
 {% endblock %}

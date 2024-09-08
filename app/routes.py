@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, jsonify, abort
 from app import create_app
+import psycopg2
 
 main_bp = Blueprint('main', __name__)
 
@@ -21,7 +22,7 @@ def commit_and_close(conn, cursor):
 def index():
     conn, cursor = get_db_cursor()
     try:
-        cursor.execute("SELECT * FROM stocks ORDER BY id ASC")
+        cursor.execute("SELECT * FROM stocks ORDER BY id ASC") # Display in the order of id's
         stocks = cursor.fetchall()
     except Exception as e:
         print(f"Error fetching stocks: {e}")
@@ -29,7 +30,7 @@ def index():
     finally:
         commit_and_close(conn, cursor)
 
-    return render_template('index.html', stocks=stocks)
+    return render_template('index.html', stocks=stocks) # passing stocks to html or templates to display by uning jinja
 
 # Route to add a new stock
 @main_bp.route('/add', methods=['GET', 'POST'])
@@ -49,7 +50,7 @@ def add_stock():
             return render_template('add_stock.html', error="Invalid price.")
 
         conn, cursor = get_db_cursor()
-
+        #insertion to the table
         try:
             cursor.execute(
                 "INSERT INTO stocks (name, ticker, price) VALUES (%s, %s, %s)",
@@ -89,7 +90,7 @@ def edit_stock(id):
         # Basic validation
         if not name or not ticker or not price:
             return render_template('edit_stock.html', stock=stock, error="All fields are required.")
-        
+            # generate an error of invalid or NA information
         try:
             price = float(price)  # Ensure price is a valid number
         except ValueError:
@@ -100,7 +101,7 @@ def edit_stock(id):
         try:
             cursor.execute(
                 "UPDATE stocks SET name = %s, ticker = %s, price = %s WHERE id = %s",
-                (name, ticker, price, id)
+                (name, ticker, price, id) #updation of the stocks
             )
             commit_and_close(conn, cursor)
         except Exception as e:
