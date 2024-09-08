@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block maincontent %}
+
+<h1>Edit Stock</h1>
+<form method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ stock[1] }}" required>
+
+    <label for="ticker">Ticker:</label>
+    <input type="text" id="ticker" name="ticker" value="{{ stock[2] }}" required>
+
+    <label for="price">Price:</label>
+    <input type="number" step="0.01" id="price" name="price" value="{{ stock[3] }}" required>
+
+    <button type="submit">Update</button>
+</form>
+
+<a href="{{ url_for('main.index') }}">Back to Stock List</a>
+{% endblock %}
